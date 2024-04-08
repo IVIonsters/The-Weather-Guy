@@ -35,7 +35,7 @@
 
 * [REPO LINK GOES HERE](https://github.com/IVIonsters/IVIonsters-Designs-Blog)
 
-* ![SCREENSHOTS GO HERE](./assets/refimages/lightmodemain.png)
+* ![SCREENSHOTS GO HERE](/assets/images/06-server-side-apis-homework-demo.png)
 * ![SCRENSHOTS HERE](./assets/refimages/lightmodeblog.png)
 
 
