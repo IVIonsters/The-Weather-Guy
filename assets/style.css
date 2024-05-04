@@ -21,3 +21,8 @@ body {
     font-weight: 500;
 }
 
+/* current forcast container outline */
+.forecastToday {
+    border: 3px dashed #ff7e5f;
+    height: 250px;
+}
