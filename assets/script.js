@@ -12,18 +12,37 @@ let cardRender = document.querySelector(".renderCards");
 renderCityHistory();
 
 // Fetch request to OpenWeather API
-function getWeather(city) {
-    let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-    fetch(queryURL)
-    .then((response) => response.json())
-    .then((data) => {
-        // functions to render current weather
-        renderWeather(data);
-        saveLocal(city);
-        retrieveForecast(city);
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-        alert("City not found. Please try again." + city);
-    });
-}
+    function getCity(city) {
+        let weatherQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+        fetch(weatherQueryURL)
+        .then((response) => response.json())
+        .then((data) => {
+            // functions to render current weather
+            renderWeather(data);
+            saveLocal(city);
+            retrieveForecast(city);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("City not found. Please try again." + city);
+        });
+    }
+
+// Retrieve five day forecast
+    let retrieveForecast = (city) => {
+        const forecastQueryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}`;
+
+        fetch(forecastQueryUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            renderForecast(data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("Please try again Data Not Found For." + city);
+        });
+    };
+
+    const renderWeather = (data) => {
+        
+    };
