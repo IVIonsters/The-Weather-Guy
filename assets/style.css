@@ -21,7 +21,11 @@ body {
     font-weight: 500;
 }
 
-/* current forcast container outline */
+.horizontalLine {
+    border: 2px solid grey;
+}
+
+/* current forecast container outline */
 .forecastToday {
     border: 3px dashed #ff7e5f;
     height: 250px;
