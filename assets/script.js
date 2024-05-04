@@ -44,5 +44,19 @@ renderCityHistory();
     };
 
     const renderWeather = (data) => {
-        
+        let liveDate = new Date().toLocaleDateString();
+        const tempF = (data.main.temp - 273.15) * 1.80 + 32;
+        const weatherIcon = data.weather[0].icon;
+        const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+
+        const createIcon = document.createElement("img");
+        createIcon.src = iconURL;
+        createIcon.alt = "Weather Icon for Today";
+
+        weatherForecast.innerHTML = `
+        <h2 class="fw-bold m-2">${data.name} (${liveDate})</h2>
+        <div>${createIcon.outerHTML}</div>
+        <p class="m-2">Temperature: ${tempF.toFixed(2)} °F
+        </br>Humidity: ${data.main.humidity}%
+        </br>Wind Speed: ${data.wind.speed} MPH </p>`;
     };
