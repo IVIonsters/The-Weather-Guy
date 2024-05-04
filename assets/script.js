@@ -12,3 +12,18 @@ let cardRender = document.querySelector(".renderCards");
 renderCityHistory();
 
 // Fetch request to OpenWeather API
+function getWeather(city) {
+    let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+    fetch(queryURL)
+    .then((response) => response.json())
+    .then((data) => {
+        // functions to render current weather
+        renderWeather(data);
+        saveLocal(city);
+        retrieveForecast(city);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("City not found. Please try again." + city);
+    });
+}
