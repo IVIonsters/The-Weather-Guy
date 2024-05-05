@@ -19,7 +19,16 @@ body {
 .weatherText {
     margin-left: 15%;
     font-size: 2.5em;
-    font-weight: 500;
+    font-weight: bold;
+    transition: all 1s ease-in-out;
+}
+
+.weatherText:hover {
+    margin-left: 15%;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    transform: scale(1.1);
 }
 
 .horizontalLine {
@@ -39,6 +48,7 @@ body {
     border:none !important;
     outline:none !important;
     color: black;
+    font-weight: bold;
 }
 
 .cityButton:hover, .searchButton:hover {

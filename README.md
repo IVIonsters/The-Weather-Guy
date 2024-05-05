@@ -29,11 +29,11 @@
 
 ## Features
 
-* **DEFINE FEATURES:** DESCRIBE FEATURES HERE 
-* **DEFINE FEATURES:** DESCRIBE FEATURES HERE 
-* **DEFINE FEATURES:** DESCRIBE FEATURES HERE 
-* **DEFINE FEATURES:** DESCRIBE FEATURES HERE 
-* **DEFINE FEATURES:** DESCRIBE FEATURES HERE 
+* **Recently Search:** Recently searched cities will appear on your left! Simply click to bring up the forecast.
+* **Search Function:** Search function , simply type a city, click search and it will recognize any city worldwide! 
+* **Alert Errors:**  If you enter a city name incorrectly! Not to worry the application will alert you to reenter.
+* **5 Day Forecast:** Application will show you the current day plus the next five days forecast. 
+* **Console Log(DEVS ONLY):** Application has sever checks and balances, and logs along the way to determine any errors or bugs that may arise.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
