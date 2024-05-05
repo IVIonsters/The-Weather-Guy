@@ -60,3 +60,39 @@ renderCityHistory();
         </br>Humidity: ${data.main.humidity}%
         </br>Wind Speed: ${data.wind.speed} MPH </p>`;
     };
+
+    // Render five day forecast
+    const renderForecast = (data) => {
+        cardRender.innerHTML = "";
+
+        for (let i = 0; i < 5; ) {
+            let forecast = data.list[i * 8];
+            let date = new Date();
+            date.setDate(date.getDate() + i + 1);
+            const tempF = (forecast.main.temp - 273.15) * 1.80 + 32;
+            const weatherIcon = forecast.weather[0].icon;
+            const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+
+            const createIcon = document.createElement("img");
+            createIcon.src = iconURL;
+            createIcon.alt = "Weather Icon for Today";
+
+            const card = document.createElement("div");
+            card.classList.add("card", "bg-primary", "text-white", "m-2");
+            card.innerHTML = `
+            <h4>${date.toLocaleDateString("en-us", {
+                month: "numeric",
+                day: "numeric",
+                year: "numeric",
+            })}</h4>
+            <div>${createIcon.outerHTML}</div>
+            <p>Temp: ${tempF.toFixed(2)} °F</p>
+            <p>Humidity: ${forecast.main.humidity}%</p>
+            <p>Wind: ${forecast.wind.speed} MPH</p>`;
+
+            cardRender.appendChild(card);
+        } 
+    };
+
+    // Save search history to local storage
+   
