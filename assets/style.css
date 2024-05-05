@@ -17,6 +17,7 @@ body {
 
 /* header text styling */
 .weatherText {
+    margin-left: 15%;
     font-size: 2.5em;
     font-weight: 500;
 }
@@ -32,13 +33,21 @@ body {
 }
 
 /* class to style city history button*/
-.cityButton {
+.cityButton, .searchButton {
     width: 100%;
     background-color: #ff7e5f;
+    border:none !important;
+    outline:none !important;
+    color: black;
+}
+
+.cityButton:hover, .searchButton:hover {
+    background-color: #feb47b;
 }
 
 .card {
     background-color: #ff7e5f;
     color: black;
     width: 10rem;
+    background: linear-gradient(to top, #ff7e5f, #feb47b);
 }

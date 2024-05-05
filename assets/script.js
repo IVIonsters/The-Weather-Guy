@@ -14,6 +14,12 @@ renderCityHistory();
 // Fetch request to OpenWeather API
 function getCity(city) {
     const weatherQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+    // added to for debug purposes
+    console.log('City:', city)
+    console.log('API:', APIKey)
+    console.log('Api URL:', weatherQueryURL)
+
+    
     fetch(weatherQueryURL)
         .then((response) => response.json())
         .then((data) => {
@@ -44,6 +50,12 @@ const retrieveForecast = (city) => {
 };
 
 const renderWeather = (data) => {
+    // added to for debug purposes
+    if( !data.main || !data.weather || !data.weather[0]) {
+        console.error("Error in fetching data:", data);
+        return;
+    }
+
     let liveDate = new Date().toLocaleDateString();
     const tempF = (data.main.temp - 273.15) * 1.8 + 32;
     const weatherIcon = data.weather[0].icon;
@@ -100,7 +112,7 @@ function saveLocal(city) {
     if (!cityHistory.includes(city)) {
         cityHistory.unshift(city);
         localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-        renderCityButton();
+        renderCityButton(city);
     }
 }
 
@@ -128,6 +140,7 @@ searchButton.addEventListener("click", (event) => {
     event.preventDefault();
     const city = userCity.value.trim();
     if (city) {
+        renderCityButton(city);
         getCity(city);
         retrieveForecast(city);
         userCity.value = "";
