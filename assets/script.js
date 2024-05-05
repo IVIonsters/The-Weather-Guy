@@ -2,11 +2,11 @@
 const APIKey = "78506e3c00a53204a2691e069931f836";
 
 //Define variables for use in functions.
-let userCity = document.querySelector("#searchCity");
-let searchButton = document.querySelector(".searchButton");
-let weatherForecast = document.querySelector(".forecastToday");
-let cityHistory = document.querySelector(".searchHistory");
-let cardRender = document.querySelector(".renderCards");
+const userCity = document.querySelector("#searchCity");
+const searchButton = document.querySelector(".searchButton");
+const weatherForecast = document.querySelector(".forecastToday");
+const cityHistory = document.querySelector(".searchHistory");
+const cardRender = document.querySelector(".renderCards");
 
 // call to retrieve local storage and render cards
 renderCityHistory();
@@ -23,7 +23,7 @@ renderCityHistory();
             retrieveForecast(city);
         })
         .catch((error) => {
-            console.error("Error:", error);
+            console.log("Error:", error);
             alert("City not found. Please try again." + city);
         });
     }
@@ -105,7 +105,7 @@ renderCityHistory();
     }
 
     // Render search history
-    function renderCityHistory () {
+    function renderCityHistory (city) {
         const  currentButton = Array.from (
             cityHistory.querySelectorAll("button")
         ).find((button) => button.textContent === city);
@@ -123,6 +123,22 @@ renderCityHistory();
     }
 
     // Event listener for search button
-
+    searchButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const city = userCity.value.trim();
+        if (city) {
+            getCity(city);
+            renderForecast(city);
+            userCity.value = "";
+        } else {
+            alert("Please enter a city to search.");
+        }
+    });
 
     // Load search history from local storage , create buttons for each city
+    function renderCityHistory () {
+        const cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+        cityHistory.forEach((city) => {
+            renderCityHistory(city);
+    });
+}
