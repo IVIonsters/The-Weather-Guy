@@ -95,4 +95,34 @@ renderCityHistory();
     };
 
     // Save search history to local storage
-   
+    function saveLocal(city) {
+        let cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+        if (cityHistory.indexOf(city) === -1) {
+            cityHistory.push(city);
+            localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+            renderCityHistory();
+        }
+    }
+
+    // Render search history
+    function renderCityHistory () {
+        const  currentButton = Array.from (
+            cityHistory.querySelectorAll("button")
+        ).find((button) => button.textContent === city);
+
+        if (!currentButton) {
+            const button = document.createElement("button");
+            button.className = "btn m-2 btn-secondary w-100";
+            button.setAttribute("data-city", city);
+            button.addEventListener("click", () => {
+                getCity(city);
+                retrieveForecast(city);
+            });
+            cityHistory.prepend(button);
+        }
+    }
+
+    // Event listener for search button
+
+
+    // Load search history from local storage , create buttons for each city
