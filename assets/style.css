@@ -30,3 +30,9 @@ body {
     border: 3px dashed #ff7e5f;
     height: 250px;
 }
+
+/* class to style city history button*/
+.cityButton {
+    width: 100%;
+    background-color: #ff7e5f;
+}

@@ -97,23 +97,22 @@ const renderForecast = (data) => {
 
 // Save search history to local storage
 function saveLocal(city) {
-    let cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
-    if (cityHistory.indexOf(city) === -1) {
-        cityHistory.push(city);
+    const cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+    if (!cityHistory.includes(city)) {
+        cityHistory.unshift(city);
         localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-        renderCityHistory();
+        renderCityButton();
     }
 }
 
 // Render search history
-function renderCityHistory(city) {
-    const currentButton = Array.from(cityHistory.querySelectorAll("button")).find(
-        (button) => button.textContent === city
-    );
+function renderCityButton(city) {
+    const currentButton = Array.from(
+        cityHistory.querySelectorAll("button")).find((btn) => btn.textContent === city);
 
     if (!currentButton) {
         const button = document.createElement("button");
-        button.className = "btn m-2 btn-secondary w-100";
+        button.className = "btn m-2 btn-primary cityButton";
         button.setAttribute("data-city", city);
         button.addEventListener("click", () => {
             getCity(city);
@@ -140,6 +139,6 @@ searchButton.addEventListener("click", (event) => {
 function renderCityHistory() {
     const cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
     cityHistory.forEach((city) => {
-        renderCityHistory(city);
+        renderCityButton(city);
     });
 }
