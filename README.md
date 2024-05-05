@@ -39,15 +39,13 @@
 
 ## Usage
 
-* EXPLAIN GENERAL DESIGN USAGE / GIF VIDEO OF USAGE
-
 * [The Weather Guy Live](https://ivionsters.github.io/The-Weather-Guy/)
 
 * [Github Repo](https://github.com/IVIonsters/The-Weather-Guy)
 
-* ![SCREENSHOTS GO HERE](/assets/images/06-server-side-apis-homework-demo.png)
+* ![Usage Gif](./assets/images/usage1.gif)
 
-* ![SCREENSHOTS HERE](./assets/refimages/lightmodeblog.png)
+* ![Screenshot of Application](./assets/images/screenshot.png)
 
 
 <p align="right"><a href="#readme-top">back to top</a></p>
