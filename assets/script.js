@@ -10,7 +10,6 @@ const renderCards = document.querySelector(".renderCards");
 
 // call to retrieve local storage and render cards
 renderCityHistory();
-d;
 
 // Fetch request to OpenWeather API
 function getCity(city) {
@@ -63,33 +62,33 @@ const renderWeather = (data) => {
 };
 
 // Render five day forecast
-const renderForecast = (data) => {
+const renderForecast = function (data) {
     renderCards.innerHTML = "";
 
-    for (let i = 0; i < 5;) {
-        let forecast = data.list[i * 8];
-        let date = new Date();
-        date.setDate(date.getDate() + i + 1);
+    for (let i = 0; i < 5; i++) {
+        const forecast = data.list[i * 8];
+        const date = new Date();
+        date.setDate(date.getDate() + (i + 1));
         const tempF = (forecast.main.temp - 273.15) * 1.8 + 32;
         const weatherIcon = forecast.weather[0].icon;
         const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
 
         const createIcon = document.createElement("img");
         createIcon.src = iconURL;
-        createIcon.alt = "Weather Icon for Today";
+        createIcon.alt = "Weather icon";
 
         const card = document.createElement("div");
-        card.classList.add("card", "m-2");
+        card.classList.add("card", "m-3");
         card.innerHTML = `
-            <h4>${date.toLocaleDateString("en-us", {
+        <h4>${date.toLocaleDateString("en-US", {
             month: "numeric",
             day: "numeric",
             year: "numeric",
-        })}</h4>
+        })}</h4> 
             <div>${createIcon.outerHTML}</div>
-            <p>Temp: ${tempF.toFixed(2)} °F</p>
-            <p>Wind: ${forecast.wind.speed} MPH</p>
-            <p>Humidity: ${forecast.main.humidity}%</p>`;
+            <p>Temp: </br>${tempF.toFixed(2)}°F</p>
+            <p>Wind: </br>${forecast.wind.speed} MPH</p>
+            <p>Humidity: </br>${forecast.main.humidity}%`;
 
         renderCards.appendChild(card);
     }
@@ -105,6 +104,7 @@ function saveLocal(city) {
     }
 }
 
+
 // Render search history
 function renderCityButton(city) {
     const currentButton = Array.from(
@@ -112,6 +112,7 @@ function renderCityButton(city) {
 
     if (!currentButton) {
         const button = document.createElement("button");
+        button.textContent = city;
         button.className = "btn m-2 btn-primary cityButton";
         button.setAttribute("data-city", city);
         button.addEventListener("click", () => {
@@ -128,7 +129,7 @@ searchButton.addEventListener("click", (event) => {
     const city = userCity.value.trim();
     if (city) {
         getCity(city);
-        renderForecast(city);
+        retrieveForecast(city);
         userCity.value = "";
     } else {
         alert("Please enter a city to search.");

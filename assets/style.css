@@ -36,3 +36,9 @@ body {
     width: 100%;
     background-color: #ff7e5f;
 }
+
+.card {
+    background-color: #ff7e5f;
+    color: black;
+    width: 10rem;
+}
