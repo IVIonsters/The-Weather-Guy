@@ -14,7 +14,7 @@ d;
 
 // Fetch request to OpenWeather API
 function getCity(city) {
-    let weatherQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+    const weatherQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
     fetch(weatherQueryURL)
         .then((response) => response.json())
         .then((data) => {
@@ -24,13 +24,13 @@ function getCity(city) {
             retrieveForecast(city);
         })
         .catch((error) => {
-            console.log("Error:", error);
+            console.log("Error In API call:", error);
             alert("City not found. Please try again." + city);
         });
 }
 
 // Retrieve five day forecast
-let retrieveForecast = (city) => {
+const retrieveForecast = (city) => {
     const forecastQueryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}`;
 
     fetch(forecastQueryUrl)
@@ -39,7 +39,7 @@ let retrieveForecast = (city) => {
             renderForecast(data);
         })
         .catch((error) => {
-            console.error("Error:", error);
+            console.error("Error in fetching forecast:", error);
             alert("Please try again Data Not Found For." + city);
         });
 };
@@ -55,11 +55,11 @@ const renderWeather = (data) => {
     createIcon.alt = "Weather Icon for Today";
 
     weatherForecast.innerHTML = `
-        <h2 class="fw-bold m-2">${data.name} (${liveDate})</h2>
+        <h1 class="fw-bold m-2">${data.name} (${liveDate})</h1>
         <div>${createIcon.outerHTML}</div>
         <p class="m-2">Temperature: ${tempF.toFixed(2)} °F
-        </br>Humidity: ${data.main.humidity}%
-        </br>Wind Speed: ${data.wind.speed} MPH </p>`;
+        </br>Wind Speed: ${data.wind.speed} MPH 
+        </br>Humidity: ${data.main.humidity}%</p>`;
 };
 
 // Render five day forecast
@@ -79,7 +79,7 @@ const renderForecast = (data) => {
         createIcon.alt = "Weather Icon for Today";
 
         const card = document.createElement("div");
-        card.classList.add("card", "bg-primary", "text-white", "m-2");
+        card.classList.add("card", "m-2");
         card.innerHTML = `
             <h4>${date.toLocaleDateString("en-us", {
             month: "numeric",
@@ -88,8 +88,8 @@ const renderForecast = (data) => {
         })}</h4>
             <div>${createIcon.outerHTML}</div>
             <p>Temp: ${tempF.toFixed(2)} °F</p>
-            <p>Humidity: ${forecast.main.humidity}%</p>
-            <p>Wind: ${forecast.wind.speed} MPH</p>`;
+            <p>Wind: ${forecast.wind.speed} MPH</p>
+            <p>Humidity: ${forecast.main.humidity}%</p>`;
 
         renderCards.appendChild(card);
     }
